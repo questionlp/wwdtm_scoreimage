@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2019 Linh Pham
+# wwdtm_scoreimage is relased under the terms of the Apache License 2.0
 """Generate PNG image file based on WWDTM show score totals"""
 
 import json
