@@ -69,14 +69,12 @@ def convert_list_to_pixels(values: List[int]) -> List[List]:
 
     return pixels
 
-def generate_image(values):
+def generate_image(values, dimension_side: int):
     """Generate a PNG image based on a list of integers"""
-    new_width = BASE_IMAGE_WIDTH * IMAGE_SCALE
-    new_height = len(values) * IMAGE_SCALE
-
+    image_size = dimension_side * IMAGE_SCALE
     array = numpy.array(values, dtype=numpy.uint8)
     image = Image.fromarray(array)
-    resized_image = image.resize((new_width, new_height), Image.NEAREST)
+    resized_image = image.resize((image_size, image_size), Image.NEAREST)
     resized_image.save('output.png')
     resized_image.show()
 
@@ -129,7 +127,8 @@ def main():
 
     list_values = list(split(remapped_totals))
     pixels = list(convert_list_to_pixels(list_values))
-    generate_image(pixels)
+    side = math.ceil(math.sqrt(len(original_totals)))
+    generate_image(pixels, side)
 
 # Only run if executed as a script and not imported
 if __name__ == '__main__':
